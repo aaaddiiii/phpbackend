@@ -1,0 +1,55 @@
+services:
+  - type: web
+    name: php-real-estate-backend
+    env: docker
+    repo: https://github.com/yourusername/phpbackend.git
+    region: oregon
+    plan: starter
+    branch: master
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: DB_HOST
+        fromDatabase:
+          name: real-estate-db
+          property: host
+      - key: DB_NAME
+        fromDatabase:
+          name: real-estate-db
+          property: database
+      - key: DB_USER
+        fromDatabase:
+          name: real-estate-db
+          property: user
+      - key: DB_PASS
+        fromDatabase:
+          name: real-estate-db
+          property: password
+      - key: DB_PORT
+        fromDatabase:
+          name: real-estate-db
+          property: port
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_EXPIRE
+        value: 3600
+      - key: JWT_REFRESH_EXPIRE
+        value: 604800
+      - key: APP_DEBUG
+        value: false
+      - key: GOOGLE_CLIENT_ID
+        sync: false
+      - key: GOOGLE_CLIENT_SECRET
+        sync: false
+      - key: CLOUDINARY_CLOUD_NAME
+        sync: false
+      - key: CLOUDINARY_API_KEY
+        sync: false
+      - key: CLOUDINARY_API_SECRET
+        sync: false
+
+databases:
+  - name: real-estate-db
+    databaseName: real_estate_db
+    user: admin
+    region: oregon
+    plan: starter

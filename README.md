@@ -1,35 +1,53 @@
-# Real Estate Property Management System API
+# PHP Real Estate Backend API
 
-A comprehensive PHP backend API for a real estate listing platform with JWT authentication, Google Sign-In, and Cloudinary integration.
+A comprehensive PHP backend for a real estate listing platform with JWT authentication, Google Sign-In integration, property CRUD operations, and image upload capabilities.
 
-## Features
+## 🚀 Quick Start
 
-- JWT-based authentication
-- Google OAuth2 integration
-- Property CRUD operations
-- Image upload via Cloudinary
-- User management
-- RESTful API design
-- Input validation and security
+### Production Deployment (Render)
+See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed deployment instructions.
 
-## Installation
+### Local Development
 
-1. Install dependencies:
-```bash
-composer install
-```
+1. **Setup Environment**:
+   ```bash
+   cp .env.example .env
+   # Edit .env with your database credentials
+   ```
 
-2. Copy environment file:
-```bash
-cp .env.example .env
-```
+2. **Using Docker (Recommended)**:
+   ```bash
+   docker-compose up -d
+   # Access: http://localhost:8080
+   ```
 
-3. Configure your `.env` file with database and API credentials
+3. **Manual Setup**:
+   - Configure web server (Apache/Nginx)
+   - Install PHP 8.0+ with MySQL extension
+   - Import database schema from `database/init.sql`
+   - Configure virtual host to point to project root
 
-4. Set up database:
-```bash
-php setup/database.php
-```
+## 📋 Features
+
+- ✅ **JWT Authentication** with refresh tokens
+- ✅ **Google OAuth Integration** 
+- ✅ **Property CRUD Operations**
+- ✅ **Image Upload** (Cloudinary integration)
+- ✅ **RESTful API Design**
+- ✅ **Docker Support**
+- ✅ **Database Migrations**
+- ✅ **Input Validation**
+- ✅ **Error Handling**
+- ✅ **CORS Support**
+
+## 🛠️ Tech Stack
+
+- **PHP 8.2** with custom MVC framework
+- **MySQL** for database
+- **Apache** web server
+- **Docker** for containerization
+- **Custom JWT** implementation
+- **PDO** for database operations
 
 ## API Endpoints
 

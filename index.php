@@ -37,7 +37,11 @@ function loadEnv($path) {
 }
 
 // Load environment variables
-loadEnv(__DIR__ . '/.env');
+// In production, Docker/Render will provide environment variables
+// In development, load from .env file
+if (file_exists(__DIR__ . '/.env')) {
+    loadEnv(__DIR__ . '/.env');
+}
 
 // Set error reporting
 if (($_ENV['APP_DEBUG'] ?? 'false') === 'true') {
@@ -51,9 +55,8 @@ if (($_ENV['APP_DEBUG'] ?? 'false') === 'true') {
 // Set timezone
 date_default_timezone_set('UTC');
 
-// CORS headers - Configure for production
-$corsOrigin = $_ENV['CORS_ORIGIN'] ?? '*';
-header("Access-Control-Allow-Origin: {$corsOrigin}");
+// CORS headers
+header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');
 header('Content-Type: application/json');
@@ -72,8 +75,9 @@ $requestMethod = $_SERVER['REQUEST_METHOD'];
 $path = parse_url($requestUri, PHP_URL_PATH);
 
 // Remove the base directory path (adjust for your setup)
-$basePath = '/phpbackendPMS';
-if (strpos($path, $basePath) === 0) {
+// In production (Render), the app runs from root, so no base path needed
+$basePath = $_ENV['BASE_PATH'] ?? '';
+if ($basePath && strpos($path, $basePath) === 0) {
     $path = substr($path, strlen($basePath));
 }
 
