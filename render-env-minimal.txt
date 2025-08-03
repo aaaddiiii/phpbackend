@@ -1,0 +1,20 @@
+# ESSENTIAL ENVIRONMENT VARIABLES FOR RENDER
+# Copy these KEY=VALUE pairs into Render's Environment Variables section
+# Add one variable at a time: Key on left, Value on right of =
+
+# MINIMAL REQUIRED VARIABLES TO START
+DB_NAME=real_estate_db
+DB_PORT=3306
+JWT_SECRET=php-real-estate-super-secret-jwt-key-production-2024-render-deployment-32-chars-minimum
+JWT_EXPIRE=3600
+JWT_REFRESH_EXPIRE=604800
+APP_DEBUG=false
+
+# ADD THESE AFTER CREATING MYSQL DATABASE:
+# DB_HOST=[copy from database dashboard]
+# DB_USER=[copy from database dashboard]  
+# DB_PASS=[copy from database dashboard]
+
+# ADD THESE FOR GOOGLE LOGIN (OPTIONAL):
+# GOOGLE_CLIENT_ID=your-google-client-id.googleusercontent.com
+# GOOGLE_CLIENT_SECRET=your-google-client-secret

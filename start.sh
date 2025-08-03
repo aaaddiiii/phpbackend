@@ -1,15 +1,20 @@
 #!/bin/bash
 
-# Wait for database to be ready
-echo "Waiting for database to be ready..."
-while ! nc -z $DB_HOST $DB_PORT; do
-  sleep 1
-done
+echo "Starting PHP Real Estate Backend..."
 
-echo "Database is ready!"
+# Print environment info (for debugging)
+echo "Environment variables:"
+echo "- DB_HOST: ${DB_HOST:-'Not set'}"
+echo "- DB_NAME: ${DB_NAME:-'Not set'}"
+echo "- DB_PORT: ${DB_PORT:-'Not set'}"
+echo "- APP_DEBUG: ${APP_DEBUG:-'Not set'}"
 
-# Run database migrations/setup if needed
-# You can add database setup commands here
+# Create uploads directory if it doesn't exist
+mkdir -p /var/www/html/uploads
 
-# Start Apache
+# Set proper permissions
+chown -R www-data:www-data /var/www/html/uploads
+chmod -R 755 /var/www/html/uploads
+
+echo "Starting Apache web server..."
 exec apache2-foreground
